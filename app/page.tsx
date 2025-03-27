@@ -8,6 +8,7 @@ import {
   Shield,
   Zap,
 } from "lucide-react";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 export default function LandingPage() {
   return (
@@ -16,6 +17,7 @@ export default function LandingPage() {
         <div className="container flex items-center justify-between h-16">
           <div className="flex items-center gap-2 text-xl font-bold">
             <span className="text-primary">Taxm8</span>
+            <ThemeToggle />
           </div>
           <nav className="hidden gap-6 md:flex">
             <Link
