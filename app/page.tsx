@@ -327,10 +327,10 @@ export default function LandingPage() {
                   Built by Tax Professionals, For Everyone
                 </h2>
                 <p className="text-muted-foreground">
-                  Taxm8 was developed by a Certified Practicing Accountant with
-                  years of experience navigating the complexities of the
-                  Australian tax system. Our mission is to make tax knowledge
-                  accessible to everyone.
+                  Taxm8 was developed by Perry Fardella CPA a Certified
+                  Practicing Accountant with years of experience navigating the
+                  complexities of the Australian tax system. Our mission is to
+                  make tax knowledge accessible to everyone.
                 </p>
                 <ul className="space-y-2">
                   <li className="flex items-start gap-2">
@@ -339,7 +339,7 @@ export default function LandingPage() {
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle className="h-5 w-5 text-primary mt-0.5" />
-                    <span>10+ years of tax advisory experience</span>
+                    <span>7+ years of tax advisory experience</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle className="h-5 w-5 text-primary mt-0.5" />
