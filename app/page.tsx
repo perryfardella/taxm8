@@ -1,103 +1,614 @@
-import Image from "next/image";
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { ArrowRight, CheckCircle, MessageSquare, Search, Shield, Zap } from "lucide-react"
 
-export default function Home() {
+export default function LandingPage() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="flex min-h-screen flex-col">
+      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="container flex h-16 items-center justify-between">
+          <div className="flex items-center gap-2 font-bold text-xl">
+            <span className="text-primary">Taxm8</span>
+          </div>
+          <nav className="hidden md:flex gap-6">
+            <Link href="#features" className="text-muted-foreground hover:text-foreground transition-colors">
+              Features
+            </Link>
+            <Link href="#how-it-works" className="text-muted-foreground hover:text-foreground transition-colors">
+              How It Works
+            </Link>
+            <Link href="#pricing" className="text-muted-foreground hover:text-foreground transition-colors">
+              Pricing
+            </Link>
+            <Link href="#faq" className="text-muted-foreground hover:text-foreground transition-colors">
+              FAQ
+            </Link>
+          </nav>
+          <div className="flex items-center gap-4">
+            <Button variant="outline" className="hidden md:flex">
+              Log in
+            </Button>
+            <Button>Get Started</Button>
+          </div>
         </div>
+      </header>
+
+      <main className="flex-1">
+        {/* Hero Section */}
+        <section className="py-20 md:py-28">
+          <div className="container px-4 md:px-6">
+            <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
+              <div className="flex flex-col justify-center space-y-4">
+                <div className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 bg-primary text-primary-foreground">
+                  Coming Soon
+                </div>
+                <div className="space-y-2">
+                  <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">
+                    Your AI Tax Assistant for Australia
+                  </h1>
+                  <p className="max-w-[600px] text-muted-foreground md:text-xl">
+                    Get real-time, accurate guidance for navigating the Australian tax system with our AI-powered
+                    advisor. Join the waitlist today!
+                  </p>
+                </div>
+                <div className="flex flex-col gap-2 min-[400px]:flex-row">
+                  <Button size="lg" className="gap-1">
+                    Join Waitlist <ArrowRight className="h-4 w-4" />
+                  </Button>
+                  <Button size="lg" variant="outline">
+                    Learn More
+                  </Button>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <CheckCircle className="h-4 w-4 text-primary" />
+                  <span>Be the first to know when we launch</span>
+                </div>
+              </div>
+              <div className="flex justify-center lg:justify-end">
+                <div className="relative w-full max-w-[500px] aspect-square md:aspect-[4/3] lg:aspect-[3/2] rounded-lg overflow-hidden border bg-muted/50 p-6">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-muted"></div>
+                  <div className="relative h-full flex flex-col gap-4 p-4 bg-card rounded-lg shadow-lg">
+                    <div className="flex items-center gap-2 text-sm font-medium">
+                      <MessageSquare className="h-4 w-4 text-primary" />
+                      <span>Taxm8 Chat</span>
+                    </div>
+                    <div className="flex-1 space-y-4 overflow-y-auto">
+                      <div className="bg-muted p-3 rounded-lg text-sm">
+                        Can I claim my home office expenses as a freelancer?
+                      </div>
+                      <div className="bg-primary/10 p-3 rounded-lg text-sm">
+                        <p className="mb-2">
+                          Yes, as a freelancer in Australia, you can claim home office expenses. According to the ATO
+                          guidelines (TR 2000/7), you can claim:
+                        </p>
+                        <ul className="list-disc pl-5 mt-2 space-y-1">
+                          <li>Occupancy expenses (if you have a dedicated workspace)</li>
+                          <li>Running expenses like electricity and internet</li>
+                          <li>Depreciation of office equipment</li>
+                        </ul>
+                        <p className="mt-2">
+                          You'll need to maintain records and calculate the work-related percentage.
+                        </p>
+                      </div>
+                    </div>
+                    <div className="relative">
+                      <input
+                        type="text"
+                        placeholder="Ask about your tax situation..."
+                        className="w-full rounded-md border bg-background px-3 py-2 text-sm"
+                      />
+                      <Button size="sm" className="absolute right-1 top-1">
+                        Ask
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Features Section */}
+        <section id="features" className="py-16 bg-muted/50">
+          <div className="container px-4 md:px-6">
+            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+              <div className="space-y-2">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Powerful Features</h2>
+                <p className="max-w-[700px] text-muted-foreground md:text-xl">
+                  Taxm8 combines AI with official ATO documentation to provide accurate, reliable tax guidance.
+                </p>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+              <FeatureCard
+                icon={<MessageSquare className="h-8 w-8" />}
+                title="AI Chatbot"
+                description="Ask tax-related questions in natural language and get clear, accurate answers instantly."
+              />
+              <FeatureCard
+                icon={<Search className="h-8 w-8" />}
+                title="Grounded in ATO Docs"
+                description="All answers are backed by official ATO documentation using Retrieval-Augmented Generation."
+              />
+              <FeatureCard
+                icon={<Shield className="h-8 w-8" />}
+                title="Transparent References"
+                description="Every answer includes references to relevant ATO rulings and guidelines."
+              />
+              <FeatureCard
+                icon={<Zap className="h-8 w-8" />}
+                title="Fast & Intuitive"
+                description="Get answers in seconds with our lightning-fast, easy-to-use interface."
+              />
+              <FeatureCard
+                icon={<CheckCircle className="h-8 w-8" />}
+                title="Feedback System"
+                description="Rate answers and flag inaccuracies to help us continuously improve."
+              />
+              <FeatureCard
+                icon={<MessageSquare className="h-8 w-8" />}
+                title="Session History"
+                description="Access your past conversations and tax advice whenever you need it."
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Technology Section */}
+        <section className="py-16">
+          <div className="container px-4 md:px-6">
+            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+              <div className="space-y-2">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                  Powered by Australian Tax Expertise
+                </h2>
+                <p className="max-w-[700px] text-muted-foreground md:text-xl">
+                  Our AI is trained on comprehensive Australian tax resources.
+                </p>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+              <div className="bg-background rounded-lg border shadow-sm p-6">
+                <h3 className="text-xl font-bold mb-4">Trained on Official Tax Resources</h3>
+                <p className="text-muted-foreground mb-4">
+                  Taxm8's AI is extensively trained on the complete Australian tax legislation, ensuring that all
+                  guidance is based on the most current tax laws.
+                </p>
+                <ul className="space-y-2">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary mt-0.5" />
+                    <span>Income Tax Assessment Act</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary mt-0.5" />
+                    <span>Tax Administration Act</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary mt-0.5" />
+                    <span>GST Act and Regulations</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary mt-0.5" />
+                    <span>Fringe Benefits Tax legislation</span>
+                  </li>
+                </ul>
+              </div>
+              <div className="bg-background rounded-lg border shadow-sm p-6">
+                <h3 className="text-xl font-bold mb-4">Incorporates ATO Rulings & Guidance</h3>
+                <p className="text-muted-foreground mb-4">
+                  Beyond legislation, Taxm8 incorporates thousands of ATO rulings, interpretations, and practice
+                  statements to provide comprehensive guidance.
+                </p>
+                <ul className="space-y-2">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary mt-0.5" />
+                    <span>Public Rulings and Determinations</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary mt-0.5" />
+                    <span>Private Rulings (anonymized)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary mt-0.5" />
+                    <span>Practice Statements and Guidelines</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary mt-0.5" />
+                    <span>ATO Fact Sheets and Guides</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* How It Works Section */}
+        <section id="how-it-works" className="py-16">
+          <div className="container px-4 md:px-6">
+            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+              <div className="space-y-2">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">How Taxm8 Works</h2>
+                <p className="max-w-[700px] text-muted-foreground md:text-xl">
+                  Our AI-powered system delivers accurate tax guidance in three simple steps.
+                </p>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+              <div className="flex flex-col items-center text-center space-y-4">
+                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary">
+                  <span className="text-2xl font-bold">1</span>
+                </div>
+                <h3 className="text-xl font-bold">Ask Your Question</h3>
+                <p className="text-muted-foreground">
+                  Type your tax-related question in natural language, just like you'd ask a tax professional.
+                </p>
+              </div>
+              <div className="flex flex-col items-center text-center space-y-4">
+                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary">
+                  <span className="text-2xl font-bold">2</span>
+                </div>
+                <h3 className="text-xl font-bold">AI Searches ATO Docs</h3>
+                <p className="text-muted-foreground">
+                  Our AI searches through thousands of ATO documents to find relevant information.
+                </p>
+              </div>
+              <div className="flex flex-col items-center text-center space-y-4">
+                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary">
+                  <span className="text-2xl font-bold">3</span>
+                </div>
+                <h3 className="text-xl font-bold">Get Clear Answers</h3>
+                <p className="text-muted-foreground">
+                  Receive easy-to-understand answers with references to official ATO sources.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CPA Developer Section */}
+        <section className="py-16 bg-muted/50">
+          <div className="container px-4 md:px-6">
+            <div className="grid gap-8 md:grid-cols-2 items-center">
+              <div className="flex justify-center">
+                <div className="relative w-[280px] h-[280px] rounded-full overflow-hidden border-4 border-primary/20">
+                  <div className="absolute inset-0 bg-muted flex items-center justify-center">
+                    <img
+                      src="/placeholder.svg?height=280&width=280"
+                      alt="CPA Developer"
+                      className="object-cover w-full h-full"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="space-y-4">
+                <div className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 bg-primary/10 text-primary">
+                  Developed by a CPA
+                </div>
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+                  Built by Tax Professionals, For Everyone
+                </h2>
+                <p className="text-muted-foreground">
+                  Taxm8 was developed by a Certified Practicing Accountant with years of experience navigating the
+                  complexities of the Australian tax system. Our mission is to make tax knowledge accessible to
+                  everyone.
+                </p>
+                <ul className="space-y-2">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary mt-0.5" />
+                    <span>Certified Practicing Accountant (CPA Australia)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary mt-0.5" />
+                    <span>10+ years of tax advisory experience</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary mt-0.5" />
+                    <span>Specializing in individual and small business taxation</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary mt-0.5" />
+                    <span>Passionate about tax education and accessibility</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Target Audience Section */}
+        <section className="py-16 bg-muted/50">
+          <div className="container px-4 md:px-6">
+            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+              <div className="space-y-2">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Who Taxm8 Is For</h2>
+                <p className="max-w-[700px] text-muted-foreground md:text-xl">
+                  Designed for Australians who need straightforward tax guidance.
+                </p>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+              <AudienceCard
+                title="Freelancers & Gig Workers"
+                description="Uber drivers, Airtasker workers, and Upwork freelancers navigating complex tax obligations."
+              />
+              <AudienceCard
+                title="Side Hustlers & Sole Traders"
+                description="People with side businesses looking to understand their tax deductions and obligations."
+              />
+              <AudienceCard
+                title="Crypto Traders"
+                description="Individuals trading cryptocurrency who need clarity on tax implications and reporting."
+              />
+              <AudienceCard
+                title="Young Professionals"
+                description="First-time tax filers and young professionals doing DIY tax returns."
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Pricing Section */}
+        <section id="pricing" className="py-16">
+          <div className="container px-4 md:px-6">
+            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+              <div className="space-y-2">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                  Simple, Transparent Pricing
+                </h2>
+                <p className="max-w-[700px] text-muted-foreground md:text-xl">
+                  Choose the plan that works for your tax needs.
+                </p>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+              <div className="flex flex-col p-6 bg-background rounded-lg border shadow-sm">
+                <div className="space-y-2">
+                  <h3 className="text-2xl font-bold">Free Trial</h3>
+                  <p className="text-muted-foreground">Try Taxm8 with limited features</p>
+                </div>
+                <div className="mt-4 mb-8">
+                  <span className="text-4xl font-bold">$0</span>
+                </div>
+                <ul className="space-y-2 mb-8 flex-1">
+                  <PricingFeature>5 queries per month</PricingFeature>
+                  <PricingFeature>Basic tax guidance</PricingFeature>
+                  <PricingFeature>No account required</PricingFeature>
+                </ul>
+                <Button variant="outline" className="w-full">
+                  Get Started
+                </Button>
+              </div>
+              <div className="flex flex-col p-6 bg-background rounded-lg border border-primary shadow-sm relative">
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-primary text-primary-foreground px-4 py-1 rounded-full text-sm font-medium">
+                  Most Popular
+                </div>
+                <div className="space-y-2">
+                  <h3 className="text-2xl font-bold">Standard</h3>
+                  <p className="text-muted-foreground">Perfect for individuals</p>
+                </div>
+                <div className="mt-4 mb-8">
+                  <span className="text-4xl font-bold">$9.99</span>
+                  <span className="text-muted-foreground ml-1">/month</span>
+                </div>
+                <ul className="space-y-2 mb-8 flex-1">
+                  <PricingFeature>Unlimited queries</PricingFeature>
+                  <PricingFeature>Saved chat history</PricingFeature>
+                  <PricingFeature>Downloadable PDF summaries</PricingFeature>
+                  <PricingFeature>Priority support</PricingFeature>
+                </ul>
+                <Button className="w-full">Subscribe Now</Button>
+              </div>
+              <div className="flex flex-col p-6 bg-background rounded-lg border shadow-sm">
+                <div className="space-y-2">
+                  <h3 className="text-2xl font-bold">Lifetime</h3>
+                  <p className="text-muted-foreground">One-time purchase</p>
+                </div>
+                <div className="mt-4 mb-8">
+                  <span className="text-4xl font-bold">$99</span>
+                  <span className="text-muted-foreground ml-1">one-time</span>
+                </div>
+                <ul className="space-y-2 mb-8 flex-1">
+                  <PricingFeature>All Standard features</PricingFeature>
+                  <PricingFeature>Lifetime access</PricingFeature>
+                  <PricingFeature>Future updates included</PricingFeature>
+                  <PricingFeature>Premium support</PricingFeature>
+                </ul>
+                <Button variant="outline" className="w-full">
+                  Buy Lifetime
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section id="faq" className="py-16 bg-muted/50">
+          <div className="container px-4 md:px-6">
+            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+              <div className="space-y-2">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                  Frequently Asked Questions
+                </h2>
+                <p className="max-w-[700px] text-muted-foreground md:text-xl">
+                  Common questions about Taxm8 and how it works.
+                </p>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
+              <FaqItem
+                question="Is Taxm8 a registered tax agent?"
+                answer="No, Taxm8 is not a registered tax agent. We provide general information based on ATO documentation, but we do not provide personalized tax advice. For complex situations, we recommend consulting a registered tax professional."
+              />
+              <FaqItem
+                question="How accurate is the information provided?"
+                answer="Taxm8 uses Retrieval-Augmented Generation to ground all answers in official ATO documentation. While we strive for accuracy, tax laws change frequently, and you should verify important information with the ATO or a tax professional."
+              />
+              <FaqItem
+                question="Is my data secure?"
+                answer="Yes, we take data security seriously. Your conversations are encrypted, and we do not share your personal information with third parties. We only use your data to improve our service."
+              />
+              <FaqItem
+                question="Can I use Taxm8 for business tax questions?"
+                answer="The current version of Taxm8 is optimized for individual taxpayers. Support for business tax questions will be available in future updates."
+              />
+              <FaqItem
+                question="How do I cancel my subscription?"
+                answer="You can cancel your subscription at any time from your account settings. If you cancel, you'll continue to have access until the end of your billing period."
+              />
+              <FaqItem
+                question="Do you offer refunds?"
+                answer="Yes, we offer a 14-day money-back guarantee if you're not satisfied with our service. Contact our support team to request a refund."
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="py-16">
+          <div className="container px-4 md:px-6">
+            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+              <div className="space-y-2">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                  Be First in Line When We Launch
+                </h2>
+                <p className="max-w-[700px] text-muted-foreground md:text-xl">
+                  Join our waitlist today and be the first to experience Taxm8 when we launch. Early subscribers will
+                  receive special benefits and discounts.
+                </p>
+              </div>
+              <div className="flex flex-col gap-2 min-[400px]:flex-row">
+                <Button size="lg" className="gap-1">
+                  Join the Waitlist <ArrowRight className="h-4 w-4" />
+                </Button>
+                <Button size="lg" variant="outline">
+                  Learn More
+                </Button>
+              </div>
+              <p className="text-sm text-muted-foreground mt-4">
+                We'll notify you as soon as Taxm8 is ready. No spam, we promise.
+              </p>
+            </div>
+          </div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      <footer className="border-t py-12 md:py-16">
+        <div className="container px-4 md:px-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="space-y-4">
+              <div className="font-bold text-xl">Taxm8</div>
+              <p className="text-sm text-muted-foreground">AI-powered Australian tax guidance for individuals.</p>
+            </div>
+            <div className="space-y-4">
+              <h4 className="font-medium">Product</h4>
+              <ul className="space-y-2 text-sm">
+                <li>
+                  <Link href="#features" className="text-muted-foreground hover:text-foreground transition-colors">
+                    Features
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#pricing" className="text-muted-foreground hover:text-foreground transition-colors">
+                    Pricing
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#faq" className="text-muted-foreground hover:text-foreground transition-colors">
+                    FAQ
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div className="space-y-4">
+              <h4 className="font-medium">Company</h4>
+              <ul className="space-y-2 text-sm">
+                <li>
+                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                    About
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                    Blog
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                    Contact
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div className="space-y-4">
+              <h4 className="font-medium">Legal</h4>
+              <ul className="space-y-2 text-sm">
+                <li>
+                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                    Privacy Policy
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                    Terms of Service
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                    Disclaimer
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="mt-8 pt-8 border-t text-center text-sm text-muted-foreground">
+            <p>
+              Disclaimer: Taxm8 provides general information only and is not a substitute for professional advice. We
+              are not a registered tax agent and do not provide personalized tax advice.
+            </p>
+            <p className="mt-2">© {new Date().getFullYear()} Taxm8. All rights reserved.</p>
+          </div>
+        </div>
       </footer>
     </div>
-  );
+  )
 }
+
+function FeatureCard({ icon, title, description }) {
+  return (
+    <div className="flex flex-col items-center text-center p-6 bg-background rounded-lg border shadow-sm">
+      <div className="h-12 w-12 flex items-center justify-center rounded-full bg-primary/10 text-primary mb-4">
+        {icon}
+      </div>
+      <h3 className="text-xl font-bold mb-2">{title}</h3>
+      <p className="text-muted-foreground">{description}</p>
+    </div>
+  )
+}
+
+function AudienceCard({ title, description }) {
+  return (
+    <div className="flex flex-col p-6 bg-background rounded-lg border shadow-sm">
+      <h3 className="text-xl font-bold mb-2">{title}</h3>
+      <p className="text-muted-foreground">{description}</p>
+    </div>
+  )
+}
+
+function PricingFeature({ children }) {
+  return (
+    <li className="flex items-center gap-2">
+      <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
+      <span>{children}</span>
+    </li>
+  )
+}
+
+function FaqItem({ question, answer }) {
+  return (
+    <div className="space-y-2">
+      <h3 className="text-xl font-bold">{question}</h3>
+      <p className="text-muted-foreground">{answer}</p>
+    </div>
+  )
+}
+
