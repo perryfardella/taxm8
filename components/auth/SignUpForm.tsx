@@ -20,6 +20,7 @@ export function SignUpForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [accessCode, setAccessCode] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -37,6 +38,22 @@ export function SignUpForm() {
     }
 
     try {
+      const codeValidation = await fetch("/api/validate-code", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ accessCode }),
+      });
+
+      const codeData = await codeValidation.json();
+
+      if (!codeValidation.ok) {
+        setError(codeData.error || "Invalid early access code");
+        setIsLoading(false);
+        return;
+      }
+
       await signUp(email, password);
       setSuccess("Check your email for a confirmation link!");
     } catch (err: any) {
@@ -48,21 +65,31 @@ export function SignUpForm() {
   };
 
   return (
-    <Card className="max-w-sm mx-auto">
+    <Card className="w-full max-w-md mx-auto">
       <CardHeader>
         <CardTitle className="text-2xl">Create an account</CardTitle>
         <CardDescription>
-          Enter your email below to create your account
+          Join Taxm8 to get started with your tax questions
         </CardDescription>
       </CardHeader>
       <CardContent>
+        {error && (
+          <Alert variant="destructive" className="mb-4">
+            <AlertDescription>{error}</AlertDescription>
+          </Alert>
+        )}
+        {success && (
+          <Alert className="mb-4">
+            <AlertDescription>{success}</AlertDescription>
+          </Alert>
+        )}
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
             <Input
               id="email"
               type="email"
-              placeholder="name@example.com"
+              placeholder="you@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -88,24 +115,18 @@ export function SignUpForm() {
               required
             />
           </div>
-
-          {error && (
-            <Alert variant="destructive">
-              <AlertDescription>{error}</AlertDescription>
-            </Alert>
-          )}
-
-          {success && (
-            <Alert>
-              <AlertDescription>{success}</AlertDescription>
-            </Alert>
-          )}
-
-          <Button
-            type="submit"
-            className="w-full"
-            disabled={isLoading || !!success}
-          >
+          <div className="space-y-2">
+            <Label htmlFor="accessCode">Early Access Code</Label>
+            <Input
+              id="accessCode"
+              type="text"
+              placeholder="Enter your early access code"
+              value={accessCode}
+              onChange={(e) => setAccessCode(e.target.value)}
+              required
+            />
+          </div>
+          <Button type="submit" className="w-full" disabled={isLoading}>
             {isLoading ? "Creating account..." : "Sign Up"}
           </Button>
         </form>
@@ -113,10 +134,7 @@ export function SignUpForm() {
       <CardFooter className="flex justify-center">
         <p className="text-sm text-muted-foreground">
           Already have an account?{" "}
-          <Link
-            href="/signin"
-            className="underline text-primary underline-offset-4"
-          >
+          <Link href="/signin" className="text-primary hover:underline">
             Sign in
           </Link>
         </p>
