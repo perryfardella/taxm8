@@ -124,8 +124,13 @@ export default function LandingPage() {
                         type="text"
                         placeholder="Ask about your tax situation..."
                         className="w-full px-3 py-2 text-sm border rounded-md bg-background"
+                        disabled
                       />
-                      <Button size="sm" className="absolute right-1 top-1">
+                      <Button
+                        size="sm"
+                        className="absolute right-0.5 top-0.5"
+                        style={{ height: "2.125rem" }}
+                      >
                         Ask
                       </Button>
                     </div>
@@ -313,10 +318,10 @@ export default function LandingPage() {
           <div className="container px-4 md:px-6">
             <div className="grid items-center gap-8 md:grid-cols-2">
               <div className="flex justify-center">
-                <div className="relative w-[280px] h-[280px] rounded-full overflow-hidden border-4 border-primary/20">
+                <div className="relative w-[320px] h-[320px] rounded-full overflow-hidden border-4 border-primary/20">
                   <div className="absolute inset-0 flex items-center justify-center bg-muted">
                     <img
-                      src="/placeholder.svg?height=280&width=280"
+                      src="/perry.png"
                       alt="CPA Developer"
                       className="object-cover w-full h-full"
                     />
@@ -324,9 +329,6 @@ export default function LandingPage() {
                 </div>
               </div>
               <div className="space-y-4">
-                <div className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 bg-primary/10 text-primary">
-                  Developed by a CPA
-                </div>
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
                   Built by Tax Professionals, For Everyone
                 </h2>
@@ -661,7 +663,15 @@ export default function LandingPage() {
   );
 }
 
-function FeatureCard({ icon, title, description }) {
+function FeatureCard({
+  icon,
+  title,
+  description,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+}) {
   return (
     <div className="flex flex-col items-center p-6 text-center border rounded-lg shadow-sm bg-background">
       <div className="flex items-center justify-center w-12 h-12 mb-4 rounded-full bg-primary/10 text-primary">
@@ -673,7 +683,13 @@ function FeatureCard({ icon, title, description }) {
   );
 }
 
-function AudienceCard({ title, description }) {
+function AudienceCard({
+  title,
+  description,
+}: {
+  title: string;
+  description: string;
+}) {
   return (
     <div className="flex flex-col p-6 border rounded-lg shadow-sm bg-background">
       <h3 className="mb-2 text-xl font-bold">{title}</h3>
@@ -682,7 +698,7 @@ function AudienceCard({ title, description }) {
   );
 }
 
-function PricingFeature({ children }) {
+function PricingFeature({ children }: { children: React.ReactNode }) {
   return (
     <li className="flex items-center gap-2">
       <CheckCircle className="flex-shrink-0 w-4 h-4 text-primary" />
@@ -691,7 +707,7 @@ function PricingFeature({ children }) {
   );
 }
 
-function FaqItem({ question, answer }) {
+function FaqItem({ question, answer }: { question: string; answer: string }) {
   return (
     <div className="space-y-2">
       <h3 className="text-xl font-bold">{question}</h3>
