@@ -17,7 +17,9 @@ export default function LandingPage() {
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex items-center justify-between h-16">
           <div className="flex items-center gap-2 text-xl font-bold">
-            <span className="text-primary">Taxm8</span>
+            <Link href="/">
+              <span className="text-primary">Taxm8</span>
+            </Link>
           </div>
           <nav className="hidden gap-6 md:flex">
             <Link

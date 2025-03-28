@@ -34,7 +34,7 @@ export async function middleware(req: NextRequest) {
 
   // If there's no session and the user is trying to access a protected route
   if (!session && req.nextUrl.pathname.startsWith("/chat")) {
-    const redirectUrl = new URL("/signin", req.url);
+    const redirectUrl = new URL("/sign-in", req.url);
     return NextResponse.redirect(redirectUrl);
   }
 

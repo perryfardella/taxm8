@@ -26,10 +26,10 @@ export function NavButtons() {
   return (
     <>
       <Button variant="outline" size="sm" className="md:size-default" asChild>
-        <Link href="/signin">Log in</Link>
+        <Link href="/sign-in">Log in</Link>
       </Button>
       <Button size="sm" className="md:size-default" asChild>
-        <Link href="/signup">Get Started</Link>
+        <Link href="/sign-up">Get Started</Link>
       </Button>
     </>
   );

@@ -1,55 +1,60 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
-import { Avatar } from "@/components/ui/avatar";
-import { Send } from "lucide-react";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { InfoIcon } from "lucide-react";
-import { sendMessage, ChatMessage } from "@/components/ChatService";
+import type React from "react";
 
-interface Message {
+import { useState, useRef, useEffect } from "react";
+import {
+  Send,
+  User,
+  Bot,
+  ThumbsUp,
+  ThumbsDown,
+  Copy,
+  Check,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+import { Card, CardContent } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
+import { ChatMessage } from "@/components/ChatService";
+import { sendMessage } from "@/components/ChatService";
+
+type Message = {
   id: string;
   role: "user" | "assistant";
   content: string;
-  timestamp: Date;
-}
+};
 
 export function Chat() {
+  const [messages, setMessages] = useState<Message[]>([
+    {
+      id: "1",
+      role: "assistant",
+      content:
+        "Hi there! I'm Taxm8, your AI tax assistant for Australia. How can I help you today?",
+    },
+  ]);
   const [input, setInput] = useState("");
-  const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [copiedId, setCopiedId] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
 
-  // Scroll to bottom whenever messages change
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    scrollToBottom();
   }, [messages]);
 
-  // Focus input on load
-  useEffect(() => {
-    inputRef.current?.focus();
-  }, []);
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!input.trim() || isLoading) return;
 
-    // Add user message to the chat
     const userMessage: Message = {
       id: Date.now().toString(),
       role: "user",
       content: input.trim(),
-      timestamp: new Date(),
     };
 
     setMessages((prev) => [...prev, userMessage]);
@@ -62,7 +67,6 @@ export function Chat() {
       id: aiMessageId,
       role: "assistant",
       content: "",
-      timestamp: new Date(),
     };
 
     setMessages((prev) => [...prev, aiMessage]);
@@ -118,85 +122,123 @@ export function Chat() {
     }
   };
 
+  const copyToClipboard = (id: string, content: string) => {
+    navigator.clipboard.writeText(content);
+    setCopiedId(id);
+    setTimeout(() => setCopiedId(null), 2000);
+  };
+
   return (
-    <Card className="w-full max-w-4xl mx-auto h-[80vh] flex flex-col">
-      <CardHeader className="px-4 py-3 border-b">
-        <Alert variant="default" className="bg-muted">
-          <InfoIcon className="w-4 h-4" />
-          <AlertDescription>
-            Disclaimer: This is for general information only. Taxm8 is not a
-            registered tax agent.
-          </AlertDescription>
-        </Alert>
-      </CardHeader>
-      <CardContent className="flex-1 p-4 overflow-hidden">
-        <ScrollArea className="h-full pr-4">
-          {messages.length === 0 ? (
-            <div className="flex items-center justify-center h-full p-8 text-center">
-              <div className="space-y-2">
-                <h3 className="text-xl font-semibold">Welcome to Taxm8</h3>
-                <p className="text-muted-foreground">
-                  Ask any question about Australian taxes and get instant,
-                  accurate answers powered by AI and grounded in official ATO
-                  documentation.
-                </p>
-              </div>
-            </div>
-          ) : (
-            <div className="space-y-4">
-              {messages.map((message) => (
+    <div className="flex flex-col h-[calc(100vh-12rem)] max-h-[calc(100vh-12rem)]">
+      <Card className="flex-1 overflow-hidden">
+        <CardContent className="flex flex-col h-full p-4">
+          <div className="flex-1 pr-4 space-y-6 overflow-y-auto">
+            {messages.map((message) => (
+              <div
+                key={message.id}
+                className={cn(
+                  "flex items-start gap-3 group",
+                  message.role === "user" ? "justify-end" : ""
+                )}
+              >
+                {message.role === "assistant" && (
+                  <div className="flex items-center justify-center flex-shrink-0 w-8 h-8 rounded-full bg-primary/10">
+                    <Bot className="w-5 h-5 text-primary" />
+                  </div>
+                )}
                 <div
-                  key={message.id}
-                  className={`flex ${
-                    message.role === "user" ? "justify-end" : "justify-start"
-                  }`}
+                  className={cn(
+                    "rounded-lg px-4 py-3 max-w-[85%]",
+                    message.role === "user"
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-muted"
+                  )}
                 >
-                  <div
-                    className={`flex gap-3 max-w-[80%] ${
-                      message.role === "user" ? "flex-row-reverse" : ""
-                    }`}
-                  >
-                    <Avatar className="w-8 h-8">
-                      <div className="flex items-center justify-center w-full h-full text-xs font-medium bg-primary text-primary-foreground">
-                        {message.role === "user" ? "YOU" : "AI"}
+                  <div className="whitespace-pre-wrap">{message.content}</div>
+                  {message.role === "assistant" && (
+                    <div className="flex items-center justify-between pt-2 mt-2 transition-opacity border-t opacity-0 border-border/40 group-hover:opacity-100">
+                      <div className="flex items-center gap-2">
+                        <Button variant="ghost" size="icon" className="h-7 w-7">
+                          <ThumbsUp className="w-4 h-4" />
+                        </Button>
+                        <Button variant="ghost" size="icon" className="h-7 w-7">
+                          <ThumbsDown className="w-4 h-4" />
+                        </Button>
                       </div>
-                    </Avatar>
-                    <div
-                      className={`rounded-lg p-3 ${
-                        message.role === "user"
-                          ? "bg-primary text-primary-foreground"
-                          : "bg-muted"
-                      }`}
-                    >
-                      {message.content ||
-                        (message.role === "assistant" && isLoading
-                          ? "..."
-                          : "")}
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-7 w-7"
+                        onClick={() =>
+                          copyToClipboard(message.id, message.content)
+                        }
+                      >
+                        {copiedId === message.id ? (
+                          <Check className="w-4 h-4" />
+                        ) : (
+                          <Copy className="w-4 h-4" />
+                        )}
+                      </Button>
                     </div>
+                  )}
+                </div>
+                {message.role === "user" && (
+                  <div className="flex items-center justify-center flex-shrink-0 w-8 h-8 rounded-full bg-primary/10">
+                    <User className="w-5 h-5 text-primary" />
+                  </div>
+                )}
+              </div>
+            ))}
+            {isLoading && (
+              <div className="flex items-start gap-3">
+                <div className="flex items-center justify-center flex-shrink-0 w-8 h-8 rounded-full bg-primary/10">
+                  <Bot className="w-5 h-5 text-primary" />
+                </div>
+                <div className="px-4 py-3 rounded-lg bg-muted">
+                  <div className="flex space-x-2">
+                    <div
+                      className="w-2 h-2 rounded-full bg-primary/40 animate-bounce"
+                      style={{ animationDelay: "0ms" }}
+                    ></div>
+                    <div
+                      className="w-2 h-2 rounded-full bg-primary/40 animate-bounce"
+                      style={{ animationDelay: "150ms" }}
+                    ></div>
+                    <div
+                      className="w-2 h-2 rounded-full bg-primary/40 animate-bounce"
+                      style={{ animationDelay: "300ms" }}
+                    ></div>
                   </div>
                 </div>
-              ))}
-              <div ref={messagesEndRef} />
-            </div>
-          )}
-        </ScrollArea>
-      </CardContent>
-      <CardFooter className="p-4 border-t">
-        <form onSubmit={handleSubmit} className="flex w-full gap-2">
-          <Input
-            ref={inputRef}
-            placeholder="Ask a tax question..."
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            disabled={isLoading}
-            className="flex-1"
-          />
-          <Button type="submit" disabled={isLoading || !input.trim()}>
-            <Send className="w-4 h-4" />
-            <span className="sr-only">Send</span>
-          </Button>
-        </form>
-      </CardFooter>
-    </Card>
+              </div>
+            )}
+            <div ref={messagesEndRef} />
+          </div>
+          <form onSubmit={handleSubmit} className="flex gap-2 mt-4">
+            <Textarea
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Ask about your tax situation..."
+              className="min-h-[60px] resize-none"
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                  e.preventDefault();
+                  if (input.trim()) {
+                    handleSubmit(e as any);
+                  }
+                }
+              }}
+            />
+            <Button
+              type="submit"
+              size="icon"
+              disabled={!input.trim() || isLoading}
+            >
+              <Send className="w-5 h-5" />
+            </Button>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
   );
 }
