@@ -34,7 +34,7 @@ Build a chat interface using OpenAI GPT-4 Turbo:
 
 - Message input and display
 - Streamed responses
-- Store chat history in local state (MVP)
+- Store chat history in local state (MVP) - update this to store chat history in Supabase in the future (maybe a premium feature?)
 - Add disclaimer above chat box
   Use Shadcn UI components.
 
