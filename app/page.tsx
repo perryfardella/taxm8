@@ -17,7 +17,6 @@ export default function LandingPage() {
         <div className="container flex items-center justify-between h-16">
           <div className="flex items-center gap-2 text-xl font-bold">
             <span className="text-primary">Taxm8</span>
-            <ThemeToggle />
           </div>
           <nav className="hidden gap-6 md:flex">
             <Link
@@ -45,11 +44,14 @@ export default function LandingPage() {
               FAQ
             </Link>
           </nav>
-          <div className="flex items-center gap-4">
-            <Button variant="outline" className="hidden md:flex">
+          <div className="flex items-center gap-2 md:gap-4">
+            <ThemeToggle />
+            <Button variant="outline" size="sm" className="md:size-default">
               Log in
             </Button>
-            <Button>Get Started</Button>
+            <Button size="sm" className="md:size-default">
+              Get Started
+            </Button>
           </div>
         </div>
       </header>
