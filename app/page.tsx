@@ -9,6 +9,7 @@ import {
   Zap,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { NavButtons } from "@/components/nav/NavButtons";
 
 export default function LandingPage() {
   return (
@@ -46,12 +47,7 @@ export default function LandingPage() {
           </nav>
           <div className="flex items-center gap-2 md:gap-4">
             <ThemeToggle />
-            <Button variant="outline" size="sm" className="md:size-default">
-              Log in
-            </Button>
-            <Button size="sm" className="md:size-default">
-              Get Started
-            </Button>
+            <NavButtons />
           </div>
         </div>
       </header>
