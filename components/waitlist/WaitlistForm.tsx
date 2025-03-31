@@ -63,7 +63,7 @@ export function WaitlistForm() {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         required
-        className="min-[400px]:min-w-[300px]"
+        className="min-[400px]:min-w-[300px] h-auto"
         disabled={status === "loading" || status === "success"}
       />
       <Button
