@@ -57,10 +57,6 @@ export function Chat() {
       content: input.trim(),
     };
 
-    setMessages((prev) => [...prev, userMessage]);
-    setInput("");
-    setIsLoading(true);
-
     // Add initial assistant message for streaming
     const aiMessageId = (Date.now() + 1).toString();
     const aiMessage: Message = {
@@ -69,7 +65,9 @@ export function Chat() {
       content: "",
     };
 
-    setMessages((prev) => [...prev, aiMessage]);
+    setMessages((prev) => [...prev, userMessage, aiMessage]);
+    setInput("");
+    setIsLoading(true);
 
     try {
       // Convert messages to API format
@@ -100,7 +98,6 @@ export function Chat() {
       });
     } catch (error) {
       console.error("Error fetching AI response:", error);
-      // Update the message with error
       setMessages((prev) => {
         const updatedMessages = [...prev];
         const aiMessageIndex = updatedMessages.findIndex(
@@ -154,8 +151,10 @@ export function Chat() {
                       : "bg-muted"
                   )}
                 >
-                  <div className="whitespace-pre-wrap">{message.content}</div>
-                  {message.role === "assistant" && (
+                  <div className="whitespace-pre-wrap">
+                    {message.content || (message.role === "assistant" && "...")}
+                  </div>
+                  {message.role === "assistant" && message.content && (
                     <div className="flex items-center justify-between pt-2 mt-2 transition-opacity border-t opacity-0 border-border/40 group-hover:opacity-100">
                       <div className="flex items-center gap-2">
                         <Button variant="ghost" size="icon" className="h-7 w-7">
@@ -189,29 +188,6 @@ export function Chat() {
                 )}
               </div>
             ))}
-            {isLoading && (
-              <div className="flex items-start gap-3">
-                <div className="flex items-center justify-center flex-shrink-0 w-8 h-8 rounded-full bg-primary/10">
-                  <Bot className="w-5 h-5 text-primary" />
-                </div>
-                <div className="px-4 py-3 rounded-lg bg-muted">
-                  <div className="flex space-x-2">
-                    <div
-                      className="w-2 h-2 rounded-full bg-primary/40 animate-bounce"
-                      style={{ animationDelay: "0ms" }}
-                    ></div>
-                    <div
-                      className="w-2 h-2 rounded-full bg-primary/40 animate-bounce"
-                      style={{ animationDelay: "150ms" }}
-                    ></div>
-                    <div
-                      className="w-2 h-2 rounded-full bg-primary/40 animate-bounce"
-                      style={{ animationDelay: "300ms" }}
-                    ></div>
-                  </div>
-                </div>
-              </div>
-            )}
             <div ref={messagesEndRef} />
           </div>
           <form
