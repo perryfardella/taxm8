@@ -71,15 +71,16 @@ Let users rate each AI response with thumbs up/down.
 - Store response feedback in Supabase
 - Optional: Add “Leave a comment” field
 
-### ✅ STEP 9: Deploy to Vercel
+### ✅ STEP 9: Deploy to Prod
 
 Prepare project for deployment:
 
-- Set up Vercel project
-- Add Supabase env vars
+- Buy .com.au domain
+- Config domain in Vercel
+- Add Redirect URL to Supabase under Auth/URL Config
 - Deploy and test end-to-end flow
 
-### ✅ STEP 9: Bugs to fix
+### ✅ STEP 10: Bugs to fix
 
 - Proper error message when trying to log in with an account still waiting verification
 - Double speech boxes from AI's side when replying to user
