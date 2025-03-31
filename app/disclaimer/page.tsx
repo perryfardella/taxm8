@@ -1,19 +1,24 @@
+import { LegalPageLayout } from "@/components/layout/LegalPageLayout";
+
 export default function Disclaimer() {
   return (
-    <div className="container px-4 py-16 md:px-6">
-      <h1 className="mb-8 text-4xl font-bold">Disclaimer</h1>
-      <div className="prose max-w-none">
-        <p className="mb-4">Last Updated: {new Date().toLocaleDateString()}</p>
+    <LegalPageLayout title="Disclaimer">
+      <p className="mb-6 text-muted-foreground">Last Updated: 31/03/2025</p>
 
-        <h2>Important Notice</h2>
-        <p className="font-bold text-red-600">
+      <section className="mb-8">
+        <h2 className="mb-4 text-2xl font-semibold">Important Notice</h2>
+        <p className="p-4 font-medium text-red-600 border border-red-100 rounded-lg dark:text-red-400 bg-red-50 dark:bg-red-900/10 dark:border-red-900/20">
           The information provided by Taxm8 is for general guidance purposes
           only and does not constitute financial or tax advice.
         </p>
+      </section>
 
-        <h2>Not a Registered Tax Agent</h2>
-        <p>Taxm8:</p>
-        <ul>
+      <section className="mb-8">
+        <h2 className="mb-4 text-2xl font-semibold">
+          Not a Registered Tax Agent
+        </h2>
+        <p className="mb-4 text-muted-foreground">Taxm8:</p>
+        <ul className="pl-6 space-y-2 list-disc text-muted-foreground">
           <li>Is not a registered tax agent under Australian law</li>
           <li>
             Does not provide personal tax advice as defined by the Tax Agent
@@ -24,19 +29,27 @@ export default function Disclaimer() {
           </li>
           <li>May not be suitable for complex tax situations</li>
         </ul>
+      </section>
 
-        <h2>Seek Professional Advice</h2>
-        <p>Before acting on any information provided by Taxm8, you should:</p>
-        <ul>
+      <section className="mb-8">
+        <h2 className="mb-4 text-2xl font-semibold">
+          Seek Professional Advice
+        </h2>
+        <p className="text-muted-foreground">
+          Before acting on any information provided by Taxm8, you should:
+        </p>
+        <ul className="pl-6 space-y-2 list-disc text-muted-foreground">
           <li>Consult a registered tax agent or qualified accountant</li>
           <li>Verify all information independently</li>
           <li>Consider your personal circumstances</li>
           <li>Review current ATO guidelines</li>
         </ul>
+      </section>
 
-        <h2>No Guarantee</h2>
-        <p>While we strive for accuracy:</p>
-        <ul>
+      <section className="mb-8">
+        <h2 className="mb-4 text-2xl font-semibold">No Guarantee</h2>
+        <p className="text-muted-foreground">While we strive for accuracy:</p>
+        <ul className="pl-6 space-y-2 list-disc text-muted-foreground">
           <li>Tax laws and regulations change frequently</li>
           <li>AI responses may not reflect the latest updates</li>
           <li>
@@ -44,10 +57,14 @@ export default function Disclaimer() {
           </li>
           <li>We cannot guarantee the accuracy of any information provided</li>
         </ul>
+      </section>
 
-        <h2>Liability Limitation</h2>
-        <p>By using Taxm8, you acknowledge and accept that:</p>
-        <ul>
+      <section className="mb-8">
+        <h2 className="mb-4 text-2xl font-semibold">Liability Limitation</h2>
+        <p className="text-muted-foreground">
+          By using Taxm8, you acknowledge and accept that:
+        </p>
+        <ul className="pl-6 space-y-2 list-disc text-muted-foreground">
           <li>You use the service at your own risk</li>
           <li>We are not responsible for any financial decisions you make</li>
           <li>
@@ -55,7 +72,7 @@ export default function Disclaimer() {
             our service
           </li>
         </ul>
-      </div>
-    </div>
+      </section>
+    </LegalPageLayout>
   );
 }
