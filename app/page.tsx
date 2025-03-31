@@ -620,7 +620,7 @@ export default function LandingPage() {
               <ul className="space-y-2 text-sm">
                 <li>
                   <Link
-                    href="#"
+                    href="/privacy"
                     className="transition-colors text-muted-foreground hover:text-foreground"
                   >
                     Privacy Policy
@@ -628,7 +628,7 @@ export default function LandingPage() {
                 </li>
                 <li>
                   <Link
-                    href="#"
+                    href="/terms"
                     className="transition-colors text-muted-foreground hover:text-foreground"
                   >
                     Terms of Service
@@ -636,7 +636,7 @@ export default function LandingPage() {
                 </li>
                 <li>
                   <Link
-                    href="#"
+                    href="/disclaimer"
                     className="transition-colors text-muted-foreground hover:text-foreground"
                   >
                     Disclaimer

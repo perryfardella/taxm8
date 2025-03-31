@@ -80,6 +80,8 @@ Prepare project for deployment:
 - Add Redirect URL to Supabase under Auth/URL Config
 - Deploy and test end-to-end flow
 
-### ✅ STEP 10: Bugs to fix
+### Step 10: Add an email provider
 
-- Proper error message when trying to log in with an account still waiting verification
+- Supabase emails aren't meant to be used for prod environments.
+
+### ✅ Bugs to fix
