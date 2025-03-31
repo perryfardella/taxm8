@@ -1,12 +1,5 @@
 import { Button } from "@/components/ui/button";
-import {
-  ArrowRight,
-  CheckCircle,
-  MessageSquare,
-  Search,
-  Shield,
-  Zap,
-} from "lucide-react";
+import { CheckCircle, MessageSquare, Search, Shield, Zap } from "lucide-react";
 import { Footer } from "@/components/nav/Footer";
 import { Navbar } from "@/components/nav/Navbar";
 import { WaitlistForm } from "@/components/waitlist/WaitlistForm";
@@ -94,7 +87,7 @@ export default function LandingPage() {
         </section>
 
         {/* Features Section */}
-        <section id="features" className="py-16 bg-muted/50">
+        <section id="features" className="py-20">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
@@ -217,7 +210,7 @@ export default function LandingPage() {
         </section>
 
         {/* How It Works Section */}
-        <section id="how-it-works" className="py-16">
+        <section id="how-it-works" className="py-20">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
@@ -353,7 +346,7 @@ export default function LandingPage() {
         </section>
 
         {/* Pricing Section */}
-        <section id="pricing" className="py-16">
+        <section id="pricing" className="py-20">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
@@ -431,7 +424,7 @@ export default function LandingPage() {
         </section>
 
         {/* FAQ Section */}
-        <section id="faq" className="py-16 bg-muted/50">
+        <section id="faq" className="py-20">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
