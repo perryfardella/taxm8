@@ -24,6 +24,14 @@ export function Footer() {
               </li>
               <li>
                 <Link
+                  href="#how-it-works"
+                  className="transition-colors text-muted-foreground hover:text-foreground"
+                >
+                  How It Works
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="#pricing"
                   className="transition-colors text-muted-foreground hover:text-foreground"
                 >
@@ -45,23 +53,23 @@ export function Footer() {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
-                  href="#"
+                  href="/about"
                   className="transition-colors text-muted-foreground hover:text-foreground"
                 >
                   About
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link
                   href="#"
                   className="transition-colors text-muted-foreground hover:text-foreground"
                 >
                   Blog
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link
-                  href="#"
+                  href="mailto:me@perryfardella.com"
                   className="transition-colors text-muted-foreground hover:text-foreground"
                 >
                   Contact
