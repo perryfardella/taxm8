@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { Footer } from "@/components/nav/Footer";
 import { Navbar } from "@/components/nav/Navbar";
+import { WaitlistForm } from "@/components/waitlist/WaitlistForm";
 
 export default function LandingPage() {
   return (
@@ -30,14 +31,7 @@ export default function LandingPage() {
                     waitlist today!
                   </p>
                 </div>
-                <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                  <Button size="lg" className="gap-1">
-                    Join Waitlist <ArrowRight className="w-4 h-4" />
-                  </Button>
-                  <Button size="lg" variant="outline">
-                    Learn More
-                  </Button>
-                </div>
+                <WaitlistForm />
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <CheckCircle className="w-4 h-4 text-primary" />
                   <span>Be the first to know when we launch</span>
@@ -493,12 +487,7 @@ export default function LandingPage() {
                 </p>
               </div>
               <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                <Button size="lg" className="gap-1">
-                  Join the Waitlist <ArrowRight className="w-4 h-4" />
-                </Button>
-                <Button size="lg" variant="outline">
-                  Learn More
-                </Button>
+                <WaitlistForm />
               </div>
               <p className="mt-4 text-sm text-muted-foreground">
                 We'll notify you as soon as Taxm8 is ready. No spam, we promise.

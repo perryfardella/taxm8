@@ -84,4 +84,6 @@ Prepare project for deployment:
 
 - Supabase emails aren't meant to be used for prod environments.
 
-### ✅ Bugs to fix
+### ✅ TODO:
+
+- Add email verification for joining the waitlist.
