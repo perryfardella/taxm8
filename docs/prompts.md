@@ -83,6 +83,3 @@ Prepare project for deployment:
 ### ✅ STEP 10: Bugs to fix
 
 - Proper error message when trying to log in with an account still waiting verification
-- Double speech boxes from AI's side when replying to user
-- Need more margin on top of Chat page (not needed, just need to reduce chat box size)
-- Make the chat box fit the page

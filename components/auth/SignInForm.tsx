@@ -28,12 +28,22 @@ export function SignInForm() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setError(null);
     setIsLoading(true);
 
     try {
       await signIn(email, password);
-    } catch (err) {
-      setError("Invalid login credentials. Please try again.");
+    } catch (err: any) {
+      // Check for specific Supabase error codes
+      if (err.message.includes("Email not confirmed")) {
+        setError(
+          "Please check your email to verify your account before signing in. If you haven't received the verification email, check your spam folder."
+        );
+      } else if (err.message.includes("Invalid login credentials")) {
+        setError("Invalid email or password. Please try again.");
+      } else {
+        setError("An error occurred while signing in. Please try again.");
+      }
       console.error(err);
     } finally {
       setIsLoading(false);
@@ -52,7 +62,9 @@ export function SignInForm() {
       </CardHeader>
       {error && (
         <Alert variant="destructive" className="mb-4">
-          <AlertDescription>{error}</AlertDescription>
+          <AlertDescription className="whitespace-pre-line">
+            {error}
+          </AlertDescription>
         </Alert>
       )}
       <CardContent>

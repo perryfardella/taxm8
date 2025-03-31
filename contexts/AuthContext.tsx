@@ -56,8 +56,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       email,
       password,
     });
-    if (error) throw error;
-    router.push("/chat"); // Redirect to chat after login
+
+    if (error) {
+      // Pass through the actual error message from Supabase
+      throw error;
+    }
+
+    router.push("/chat");
   };
 
   const signUp = async (email: string, password: string) => {
