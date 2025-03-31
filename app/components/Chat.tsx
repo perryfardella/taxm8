@@ -129,10 +129,10 @@ export function Chat() {
   };
 
   return (
-    <div className="flex flex-col h-[calc(100vh-12rem)] max-h-[calc(100vh-12rem)]">
+    <div className="flex flex-col h-[calc(100vh-16rem)]">
       <Card className="flex-1 overflow-hidden">
         <CardContent className="flex flex-col h-full p-4">
-          <div className="flex-1 pr-4 space-y-6 overflow-y-auto">
+          <div className="flex-1 pr-4 space-y-4 overflow-y-auto">
             {messages.map((message) => (
               <div
                 key={message.id}
@@ -214,12 +214,15 @@ export function Chat() {
             )}
             <div ref={messagesEndRef} />
           </div>
-          <form onSubmit={handleSubmit} className="flex gap-2 mt-4">
+          <form
+            onSubmit={handleSubmit}
+            className="flex gap-2 pt-4 mt-2 border-t"
+          >
             <Textarea
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Ask about your tax situation..."
-              className="min-h-[60px] resize-none"
+              className="min-h-[50px] max-h-[100px] resize-none"
               onKeyDown={(e) => {
                 if (e.key === "Enter" && !e.shiftKey) {
                   e.preventDefault();
@@ -233,6 +236,7 @@ export function Chat() {
               type="submit"
               size="icon"
               disabled={!input.trim() || isLoading}
+              className="shrink-0"
             >
               <Send className="w-5 h-5" />
             </Button>

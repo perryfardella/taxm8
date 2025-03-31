@@ -11,9 +11,9 @@ export default function ChatPage() {
   return (
     <>
       <Navbar />
-      <div className="container max-w-4xl py-8">
-        <h1 className="mb-6 text-2xl font-bold text-center">Chat with Taxm8</h1>
-        <p className="mb-8 text-center text-muted-foreground">
+      <div className="container flex flex-col max-w-4xl px-4 py-6">
+        <h1 className="mb-2 text-2xl font-bold text-center">Chat with Taxm8</h1>
+        <p className="mb-4 text-center text-muted-foreground">
           Ask any question about Australian taxation and get accurate,
           up-to-date answers based on ATO guidelines.
         </p>
