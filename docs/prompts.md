@@ -87,3 +87,5 @@ Prepare project for deployment:
 ### ✅ TODO:
 
 - Add email verification for joining the waitlist.
+- Fix sign up with Google not telling the user they need to confirm their email. (or we just stop them needing to).
+- If OpenAI Becomes too expensive, switch to DeepSeek

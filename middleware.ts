@@ -5,6 +5,11 @@ import type { NextRequest } from "next/server";
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
 
+  // Don't run middleware for auth callback routes
+  if (req.nextUrl.pathname.startsWith("/auth/callback")) {
+    return res;
+  }
+
   // Create server-side Supabase client with the new cookie method format
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -41,6 +46,17 @@ export async function middleware(req: NextRequest) {
   return res;
 }
 
+// Add matcher configuration to specify which paths to run middleware on
 export const config = {
-  matcher: ["/chat/:path*"],
+  matcher: [
+    /*
+     * Match all request paths except:
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     * - public folder
+     * - auth callback routes
+     */
+    "/((?!_next/static|_next/image|favicon.ico|public|auth/callback).*)",
+  ],
 };

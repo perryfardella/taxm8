@@ -37,7 +37,9 @@ export async function POST(req: NextRequest) {
 
     // Start streaming response
     const openaiStream = await openai.chat.completions.create({
-      model: "gpt-4-turbo",
+      model: "gpt-3.5-turbo",
+      // TODO: Switch to GPT-4-turbo in prod
+      // model: "gpt-4-turbo",
       messages: openaiMessages,
       temperature: 0.7,
       stream: true,
