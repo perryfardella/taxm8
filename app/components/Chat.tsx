@@ -11,6 +11,7 @@ import {
   ThumbsDown,
   Copy,
   Check,
+  ArrowDown,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -18,6 +19,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { ChatMessage } from "@/components/ChatService";
 import { sendMessage } from "@/components/ChatService";
+import { LoadingDots } from "./LoadingDots";
 
 type Message = {
   id: string;
@@ -38,10 +40,28 @@ export function Chat() {
   const [isLoading, setIsLoading] = useState(false);
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const [autoScroll, setAutoScroll] = useState(true);
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
+    if (autoScroll) {
+      scrollToBottom();
+    }
+  }, [messages, autoScroll]);
+
+  useEffect(() => {
+    const container = messagesContainerRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      const { scrollTop, scrollHeight, clientHeight } = container;
+      const isAtBottom = scrollHeight - scrollTop - clientHeight < 50;
+      setAutoScroll(isAtBottom);
+    };
+
+    container.addEventListener("scroll", handleScroll);
+    return () => container.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -129,7 +149,10 @@ export function Chat() {
     <div className="flex flex-col h-[calc(100vh-16rem)]">
       <Card className="flex-1 overflow-hidden">
         <CardContent className="flex flex-col h-full p-4">
-          <div className="flex-1 pr-4 space-y-4 overflow-y-auto">
+          <div
+            ref={messagesContainerRef}
+            className="flex-1 pr-4 space-y-4 overflow-y-auto"
+          >
             {messages.map((message) => (
               <div
                 key={message.id}
@@ -152,7 +175,8 @@ export function Chat() {
                   )}
                 >
                   <div className="whitespace-pre-wrap">
-                    {message.content || (message.role === "assistant" && "...")}
+                    {message.content ||
+                      (message.role === "assistant" && <LoadingDots />)}
                   </div>
                   {message.role === "assistant" && message.content && (
                     <div className="flex items-center justify-between pt-2 mt-2 transition-opacity border-t opacity-0 border-border/40 group-hover:opacity-100">
@@ -219,6 +243,21 @@ export function Chat() {
           </form>
         </CardContent>
       </Card>
+      {!autoScroll && isLoading && (
+        <div className="fixed bottom-24 right-8">
+          <Button
+            size="sm"
+            variant="outline"
+            onClick={() => {
+              setAutoScroll(true);
+              scrollToBottom();
+            }}
+          >
+            <ArrowDown className="w-4 h-4 mr-2" />
+            New message
+          </Button>
+        </div>
+      )}
     </div>
   );
 }
