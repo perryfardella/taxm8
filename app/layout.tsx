@@ -12,6 +12,9 @@ export const metadata = {
   description:
     "Get real-time, accurate guidance for navigating the Australian tax system with our AI-powered advisor.",
   generator: "v0.dev",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
@@ -21,9 +24,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-      </head>
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"
@@ -39,5 +39,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-import "./globals.css";
