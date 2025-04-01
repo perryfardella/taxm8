@@ -89,3 +89,4 @@ Prepare project for deployment:
 - Add email verification for joining the waitlist.
 - If OpenAI Becomes too expensive, switch to DeepSeek
 - Make sure all env variables are added to Vercel
+- Need to add a Forgot Password flow
